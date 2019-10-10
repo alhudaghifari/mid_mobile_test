@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MID Mobile test</string>
+    <string name="award">AWARD</string>
+    <string name="login_welcome_msg">Enter your email address\nto sign in and continue</string>
+    <string name="signin">Sign In</string>
+    <string name="email">Email Address</string>
 </resources>
