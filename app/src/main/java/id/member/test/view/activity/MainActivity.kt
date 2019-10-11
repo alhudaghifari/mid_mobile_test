@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
             }
             3 -> {
                 sharedPrefManager.setLogin(false)
+                sharedPrefManager.resetData()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()

@@ -58,4 +58,10 @@ class SharedPrefManager(context: Context) {
     fun getFilterVoucher(): Boolean {
         return pref.getBoolean(KEY_FILTER_VOUCHER, true)
     }
+
+    fun resetData() {
+        editor = pref.edit()
+        editor.clear()
+        editor.apply()
+    }
 }
