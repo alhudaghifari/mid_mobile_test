@@ -3,7 +3,6 @@ package id.member.test.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -140,11 +139,8 @@ class AwardsFragment : Fragment(), AwardsInterface {
         val filterProduct = sharedPrefManager.getFilterProduct()
 
         for (item in model) {
-            Log.d("awards", "1")
             if (filterVoucher && filterProduct) {
-                if (item.type == Constant.AWARDS_TYPE.VOUCHER || item.type == Constant.AWARDS_TYPE.PRODUCT) {
-                    data = getPointFromFilter(item, data)
-                }
+                data = getPointFromFilter(item, data)
             } else if (!filterVoucher && filterProduct) {
                 if (item.type == Constant.AWARDS_TYPE.PRODUCT) {
                     data = getPointFromFilter(item, data)
