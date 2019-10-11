@@ -29,17 +29,31 @@ class FilterActivity : AppCompatActivity() {
             linlayType.visibility = View.VISIBLE
             tvTypeAward.text = "Type: Voucher, Product"
             isTypeFilterActive = true
+            cb2Voucher.isChecked = true
+            cb3Products.isChecked = true
         } else if (!sharedPrefManager.getFilterProduct() && sharedPrefManager.getFilterVoucher()) {
             linlayType.visibility = View.VISIBLE
             tvTypeAward.text = "Type: Product"
             isTypeFilterActive = true
+            cb2Voucher.isChecked = true
+            cb3Products.isChecked = false
         } else if (sharedPrefManager.getFilterProduct() && !sharedPrefManager.getFilterVoucher()) {
             linlayType.visibility = View.VISIBLE
             tvTypeAward.text = "Type: Voucher"
             isTypeFilterActive = true
+            cb2Voucher.isChecked = false
+            cb3Products.isChecked = true
         } else {
             linlayType.visibility = View.GONE
             isTypeFilterActive = false
+            cb2Voucher.isChecked = false
+            cb3Products.isChecked = false
+        }
+
+        if (isTypeFilterActive && isPointFilterActive) {
+            btnClear.visibility = View.VISIBLE
+        } else {
+            btnClear.visibility = View.GONE
         }
 
         setPointHistory()
@@ -101,8 +115,7 @@ class FilterActivity : AppCompatActivity() {
         })
 
         btnClear.setOnClickListener({
-            if (isPointFilterActive && isTypeFilterActive) {
-                btnClear.visibility = View.GONE
+            if (isPointFilterActive || isTypeFilterActive) {
                 linlayBtnPoint.visibility = View.GONE
                 linlayType.visibility = View.GONE
                 isPointFilterActive = false
@@ -110,6 +123,7 @@ class FilterActivity : AppCompatActivity() {
                 cb1AllType.isChecked = false
                 cb2Voucher.isChecked = false
                 cb3Products.isChecked = false
+                btnClear.visibility = View.GONE
             }
         })
 

@@ -58,6 +58,10 @@ class AwardsAdapter(internal var data: ArrayList<AwardsModel>, internal var cont
         }
     }
 
+    fun setData(newData: ArrayList<AwardsModel>) {
+        data = newData
+    }
+
     class ArticleViewHolder(mViewContainer: View) : RecyclerView.ViewHolder(mViewContainer) {
         internal var clParent : ConstraintLayout
 

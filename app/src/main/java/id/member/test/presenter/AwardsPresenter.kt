@@ -9,9 +9,9 @@ import id.logique.hinoconnect.utils.Constant
  */
 class AwardsPresenter(private val view: AwardsInterface) {
 
-    fun callData() {
+    fun callData(page: Int) {
         view.showLoading()
-        view.callFinished(Constant.getData())
+        view.callFinished(Constant.getData(page))
         view.hideLoading()
     }
 }
