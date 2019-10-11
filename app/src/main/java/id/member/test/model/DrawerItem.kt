@@ -1,14 +1,13 @@
-package id.logique.hinoconnect.model
+package id.member.test.model
 
 
 /**
  * Created by Alhudaghifari on 10:30 23/09/19
  *
  */
-class DrawerItem(itemName: String, imgResID: Int) {
+class DrawerItem(itemName: String) {
 
     internal var itemName: String? = itemName
-    internal var imgResID: Int = imgResID
 
     fun getItemName(): String? {
         return itemName
@@ -18,11 +17,4 @@ class DrawerItem(itemName: String, imgResID: Int) {
         this.itemName = itemName
     }
 
-    fun getImgResID(): Int {
-        return imgResID
-    }
-
-    fun setImgResID(imgResID: Int) {
-        this.imgResID = imgResID
-    }
 }
