@@ -40,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         ivOpenMenuDrawer.setOnClickListener({
             drawer_layout.openDrawer(GravityCompat.START)
         })
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.content_frame, AwardsFragment(), resources.getString(R.string.title_home))
+            .commit()
     }
 
     fun selectItem(position: Int) {
