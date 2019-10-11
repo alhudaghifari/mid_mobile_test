@@ -1,4 +1,4 @@
-package id.member.test.view
+package id.member.test.view.activity
 
 import android.content.Intent
 import android.os.Bundle
