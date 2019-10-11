@@ -1,10 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.activity.FilterActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/filter"/>
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_close_black_24dp"
+        android:layout_alignParentEnd="true"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginTop="15dp"
+        android:nestedScrollingEnabled="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <RelativeLayout
+                android:id="@+id/rellayFilterHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linlayBtnPoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:background="@drawable/border_blue_fill_white">
+
+                    <TextView
+                        android:id="@+id/tvPoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Poin: 10000 - 500000"
+                        android:textColor="@color/blue" />
+
+                    <ImageView
+                        android:id="@+id/ivClosePoint"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_add_circle_blue_24dp"
+                        android:rotation="45"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:layout_marginTop="4dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:layout_below="@id/linlayBtnPoint"
+                    android:background="@drawable/border_blue_fill_white">
+
+                    <TextView
+                        android:id="@+id/tvTypeAward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue"
+                        android:layout_gravity="center_vertical"
+                        android:text="Type: Products, Vouchers"/>
+
+                    <ImageView
+                        android:id="@+id/ivCloseType"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_add_circle_blue_24dp"
+                        android:rotation="45"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnClear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/linlayType"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/blue"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:background="@drawable/border_blue_fill_white"
+                    android:text="Clear All Text"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvPointNeeded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Point Needed"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/rellayFilterHistory"
+                android:textColor="@color/grey"/>
+
+            <TextView
+                android:id="@+id/tvPointMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IDR 10.000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp"
+                android:layout_below="@id/tvPointNeeded"
+                android:textColor="@color/blue"/>
+
+            <TextView
+                android:id="@+id/tvPointMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IDR 500.000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/tvPointNeeded"
+                android:textColor="@color/blue"/>
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:max="2"
+                android:progress="1"
+                android:layout_below="@id/tvPointMin" />
+
+            <TextView
+                android:id="@+id/tvAwardsTypeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Awards Type"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/seekBar"
+                android:textColor="@color/grey"/>
+
+            <CheckBox
+                android:id="@+id/cb1AllType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_below="@id/tvAwardsTypeTitle"
+                android:text="All Type"/>
+
+            <CheckBox
+                android:id="@+id/cb2Voucher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_below="@id/cb1AllType"
+                android:text="Vouchers"/>
+
+            <CheckBox
+                android:id="@+id/cb3Products"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_below="@id/cb2Voucher"
+                android:text="Products"/>
+
+            <CheckBox
+                android:id="@+id/cb4Others"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_below="@id/cb3Products"
+                android:text="Others"/>
+
+            <Button
+                android:id="@+id/btnFilterDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cb4Others"
+                android:background="@drawable/btn_blue"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="50dp"
+                android:text="@string/filter"
+                android:textColor="@color/white"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
