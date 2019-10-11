@@ -4,4 +4,12 @@
     <string name="login_welcome_msg">Enter your email address\nto sign in and continue</string>
     <string name="signin">Sign In</string>
     <string name="email">Email Address</string>
+
+    <string name="drawer_open" translatable="false">Open drawer</string>
+    <string name="drawer_close" translatable="false">Close drawer</string>
+    <string name="awards_menu">Awards Menu</string>
+
+    <string name="title_home">Home</string>
+    <string name="wrong_email">Email not registered</string>
+
 </resources>
