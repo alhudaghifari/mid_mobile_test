@@ -1,4 +1,4 @@
-package id.logique.hinoconnect.view.adapter
+package id.member.test.view.adapter
 
 import android.app.Activity
 import android.content.Context
@@ -9,8 +9,9 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import id.logique.hinoconnect.R
-import id.logique.hinoconnect.model.DrawerItem
+import androidx.core.content.ContextCompat
+import id.member.test.R
+import id.member.test.model.DrawerItem
 
 
 /**
@@ -33,14 +34,10 @@ class CustomDrawerAdapter(context: Context, resource: Int, drawerItem: MutableLi
             drawerHolder = DrawerItemHolder()
 
             view = inflater.inflate(layoutResID, parent, false)
-            drawerHolder.tvMenu = view!!
-                    .findViewById(R.id.tvMenu) as TextView
-            drawerHolder.tvItemName = view
-                    .findViewById(R.id.tvDrawerItemName) as TextView
-            drawerHolder.ivIcon = view.findViewById(R.id.ivIconDrawer) as ImageView
-            drawerHolder.ivEdgeColor = view.findViewById(R.id.ivEdgeColor) as ImageView
-            drawerHolder.rellayItemLayout = view
-                    .findViewById(R.id.rellayItemLayout) as RelativeLayout
+            drawerHolder.tvAwardsMenu = view!!
+                    .findViewById(R.id.tvAwardsMenu) as TextView
+            drawerHolder.ivIcon = view.findViewById(R.id.ivIcon) as ImageView
+            drawerHolder.tvItemName = view.findViewById(R.id.tvItemName) as TextView
             view.tag = drawerHolder
         } else {
             drawerHolder = view.tag as DrawerItemHolder
@@ -49,18 +46,16 @@ class CustomDrawerAdapter(context: Context, resource: Int, drawerItem: MutableLi
         val dItem = this.drawerItemList[position]
 
         if (position != 0) {
-            drawerHolder.tvMenu!!.visibility = View.GONE
+            drawerHolder.tvAwardsMenu!!.visibility = View.GONE
+            drawerHolder.ivIcon!!.visibility = View.GONE
         }
-
-        Log.d("Custom", "position = $position and selectedItem = $selectedItem")
 
         if (position == selectedItem) {
-            drawerHolder.ivEdgeColor!!.setImageResource(R.color.colorPrimaryDark)
+            drawerHolder.tvItemName!!.setTextColor(ContextCompat.getColor(context, R.color.black))
         } else {
-            drawerHolder.ivEdgeColor!!.setImageResource(R.color.white)
+            drawerHolder.tvItemName!!.setTextColor(ContextCompat.getColor(context, R.color.silver_grey))
         }
 
-        drawerHolder.ivIcon!!.setImageDrawable(view.resources.getDrawable(dItem.getImgResID(), null))
         drawerHolder.tvItemName!!.text = dItem.getItemName()
 
         return view
@@ -71,10 +66,8 @@ class CustomDrawerAdapter(context: Context, resource: Int, drawerItem: MutableLi
     }
 
     private class DrawerItemHolder {
-        internal var tvMenu: TextView? = null
+        internal var tvAwardsMenu: TextView? = null
         internal var tvItemName: TextView? = null
         internal var ivIcon: ImageView? = null
-        internal var ivEdgeColor: ImageView? = null
-        internal var rellayItemLayout: RelativeLayout? = null
     }
 }
