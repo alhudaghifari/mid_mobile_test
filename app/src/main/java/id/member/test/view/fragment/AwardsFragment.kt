@@ -23,7 +23,6 @@ import id.member.test.view.activity.FilterActivity
 import id.member.test.view.adapter.AwardsAdapter
 
 
-
 /**
  * A simple [Fragment] subclass.
  */
@@ -74,6 +73,7 @@ class AwardsFragment : Fragment(), AwardsInterface {
 
     override fun onResume() {
         super.onResume()
+        page = 1
         presenter.callData(page)
     }
 
@@ -87,16 +87,16 @@ class AwardsFragment : Fragment(), AwardsInterface {
 
     override fun callFinished(model: ArrayList<AwardsModel>) {
         if (page == 1) {
-            setRecyclerView(filterData(model))
             data = filterData(model)
+            setRecyclerView(data)
         } else {
             data.addAll(filterData(model))
             adapter.setData(data)
             adapter.notifyDataSetChanged()
             if (page <= 3)
-                Toast.makeText(context!!,"new data loaded $page", Toast.LENGTH_LONG).show()
+                Toast.makeText(context!!, "new data loaded $page", Toast.LENGTH_LONG).show()
             else
-                Toast.makeText(context!!,"end of data", Toast.LENGTH_LONG).show()
+                Toast.makeText(context!!, "end of data", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -104,23 +104,26 @@ class AwardsFragment : Fragment(), AwardsInterface {
 
     }
 
-    private fun getPointFromFilter(item: AwardsModel, data: ArrayList<AwardsModel>): ArrayList<AwardsModel> {
+    private fun getPointFromFilter(
+        item: AwardsModel,
+        data: ArrayList<AwardsModel>
+    ): ArrayList<AwardsModel> {
         val point = sharedPrefManager.getFilterPoint()
-        when(point) {
-            Constant.POINT_TYPE.NO_POINT.type ->  {
+        when (point) {
+            Constant.POINT_TYPE.NO_POINT.type -> {
                 data.add(item)
             }
-            Constant.POINT_TYPE.POINT_10000.type ->  {
+            Constant.POINT_TYPE.POINT_10000.type -> {
                 if (item.point < 10000) {
                     data.add(item)
                 }
             }
-            Constant.POINT_TYPE.POINT_MIDDLE.type ->  {
+            Constant.POINT_TYPE.POINT_MIDDLE.type -> {
                 if (item.point >= 10000 && item.point <= 500000) {
                     data.add(item)
                 }
             }
-            Constant.POINT_TYPE.POINT_500000.type ->  {
+            Constant.POINT_TYPE.POINT_500000.type -> {
                 if (item.point >= 500000) {
                     data.add(item)
                 }
@@ -133,22 +136,27 @@ class AwardsFragment : Fragment(), AwardsInterface {
     private fun filterData(model: ArrayList<AwardsModel>): ArrayList<AwardsModel> {
         var data = ArrayList<AwardsModel>()
 
+        val filterVoucher = sharedPrefManager.getFilterVoucher()
+        val filterProduct = sharedPrefManager.getFilterProduct()
+
         for (item in model) {
-            Log.d("awards","1")
-            if (sharedPrefManager.getFilterVoucher() && sharedPrefManager.getFilterProduct()) {
+            Log.d("awards", "1")
+            if (filterVoucher && filterProduct) {
                 if (item.type == Constant.AWARDS_TYPE.VOUCHER || item.type == Constant.AWARDS_TYPE.PRODUCT) {
-                   data = getPointFromFilter(item, data)
+                    data = getPointFromFilter(item, data)
                 }
-            } else if (sharedPrefManager.getFilterProduct()) {
+            } else if (!filterVoucher && filterProduct) {
                 if (item.type == Constant.AWARDS_TYPE.PRODUCT) {
                     data = getPointFromFilter(item, data)
                 }
-            } else if (sharedPrefManager.getFilterVoucher()) {
+            } else if (filterVoucher && !filterProduct) {
                 if (item.type == Constant.AWARDS_TYPE.VOUCHER) {
                     data = getPointFromFilter(item, data)
                 }
             } else {
-                data = getPointFromFilter(item, data)
+                if (item.type != Constant.AWARDS_TYPE.VOUCHER && item.type != Constant.AWARDS_TYPE.PRODUCT) {
+                    data = getPointFromFilter(item, data)
+                }
             }
         }
 
