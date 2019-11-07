@@ -3,6 +3,7 @@ package id.member.test.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,7 @@ import id.member.test.view.adapter.AwardsAdapter
  */
 class AwardsFragment : Fragment(), AwardsInterface {
 
+    private val TAG = AwardsFragment::class.java.simpleName
     private lateinit var recyclerView: RecyclerView
     private lateinit var presenter: AwardsPresenter
     private lateinit var progressBar: ProgressBar
@@ -100,7 +102,7 @@ class AwardsFragment : Fragment(), AwardsInterface {
     }
 
     override fun showError(msg: String) {
-
+        Log.e(TAG, msg)
     }
 
     private fun getPointFromFilter(
